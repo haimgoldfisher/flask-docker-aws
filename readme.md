@@ -25,7 +25,6 @@ This project is a Flask web application that allows users to enter their name an
     ALTER ROLE myuser SET default_transaction_isolation TO 'read committed';
     ALTER ROLE myuser SET timezone TO 'UTC';
     GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
-    \q
     ```
 - **Windows:**
   - Download and install PostgreSQL from the official website: [PostgreSQL Downloads](https://www.postgresql.org/download/windows/)
