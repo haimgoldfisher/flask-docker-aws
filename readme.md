@@ -56,6 +56,34 @@ This project is a Flask web application that allows users to enter their name an
 
 ![db](snaps/db.png)
 
+## Amazon S3 Integration
+
+To integrate Amazon S3 into the project, the following steps were taken:
+
+1. **Created S3 Bucket with Public Read Access:**
+   - A new S3 bucket was created using the AWS Management Console.
+   - Public read access was granted to the bucket to allow access to the uploaded image.
+
+2. **Uploaded Image to S3 Bucket:**
+   - An image was uploaded to the newly created S3 bucket.
+
+3. **Made the Image Public:**
+   - The uploaded image in the S3 bucket was made public to allow access from external sources.
+
+4. **Updated Image URL in welcome.html:**
+   - The URL of the image in the `welcome.html` file was updated to point to the public URL of the image hosted on S3.
+
+### Screenshots
+
+1. **AWS Console with S3 Bucket:**
+   - ![AWS Console S3 Bucket](snaps/s3_bucket_pic_url.png)
+
+2. **Updated Code with S3 Image URL:**
+   - ![Updated Code with S3 Image URL](snaps/html_welcome_s3_bucket.png)
+
+By following these steps, Amazon S3 integration was successfully implemented, allowing the project to utilize an image hosted on S3.
+
+
 ## Project Architecture
 
 This project follows a client-server architecture using Flask as the web framework, HTML for front-end rendering, and PostgreSQL for database management. The project directory structure is as follows:
