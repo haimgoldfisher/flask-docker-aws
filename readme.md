@@ -1,38 +1,20 @@
-# Flask-Postgres-App
+# Flask-SQLite-App
 
 ## Description
 
-This project is a Flask web application that allows users to enter their name and email, which are then stored in a PostgreSQL database. Users can also view the stored names and emails by accessing a specific route.
+This project is a Flask web application that allows users to enter their name and email, which are then stored in an SQLite database. Users can also view the stored names and emails by accessing a specific route.
 
 ## Installation Instructions
 
-### 1. Install PostgreSQL
-- **Mac:**
-  - Install PostgreSQL using Homebrew:
-    ```
-    brew install postgresql
-    ```
-  - Start PostgreSQL service:
-    ```
-    brew services start postgresql
-    ```
-  - Create a database and user:
-    ```
-    psql
-    CREATE DATABASE mydatabase;
-    CREATE USER myuser WITH PASSWORD 'mypassword';
-    ALTER ROLE myuser SET client_encoding TO 'utf8';
-    ALTER ROLE myuser SET default_transaction_isolation TO 'read committed';
-    ALTER ROLE myuser SET timezone TO 'UTC';
-    GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
-    ```
-- **Windows:**
-  - Download and install PostgreSQL from the official website: [PostgreSQL Downloads](https://www.postgresql.org/download/windows/)
-  - During installation, create a database and user with the desired credentials.
+### Prerequisites
 
-### 2. Install Requirements
-- Install the required Python packages using pip:
-  ```
+Ensure you have the following installed on your system:
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### 1. Install Requirements
+- Install the required Python packages using pip (if running locally):
+  ```sh
   pip install -r requirements.txt 
     ```
 
@@ -93,14 +75,17 @@ flask-docker-aws/
 │
 ├── app/
 │   ├── flask-app.py        # Flask app file
-│   ├── templates/          # HTML templates directory
+│   ├── templates/          # HTML templates dir
 │   │   ├── db.html         # Template for displaying names and emails
 │   │   ├── index.html      # Template for entering name and email
 │   │   └── welcome.html    # Template for welcoming user
-├── .venv/                   # Virtual env. directory
-├── requirements.txt         # File for dependencies
+├── instance/
+│   └── users.db            # SQLite db
+├── .venv/                  # Virtual env. directory (if running locally)
+├── requirements.txt        # File for dependencies
+├── Dockerfile              # Dockerfile for containerizing the app
+└── docker-compose.yml      # Docker Compose file for defining services
 ```
-
 
 The Flask application (`flask-app.py`) handles routing and interactions with the database. HTML templates (`templates/`) are used for rendering front-end views. PostgreSQL is used to store user information in the database.
 
