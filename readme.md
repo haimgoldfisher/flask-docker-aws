@@ -61,7 +61,7 @@ To integrate Amazon S3 into the project, the following steps were taken:
    - ![AWS Console S3 Bucket](snaps/s3_bucket_pic_url.png)
 
 2. **Updated Code with S3 Image URL:**
-   - ![Updated Code with S3 Image URL](snaps/html_welcome_s3_bucket.png)
+   - ![Updated Code with S3 Image URL](snaps/html_welcome_s3_bucket_docker.png)
 
 By following these steps, Amazon S3 integration was successfully implemented, allowing the project to utilize an image hosted on S3.
 
