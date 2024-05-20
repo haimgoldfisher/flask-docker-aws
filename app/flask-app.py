@@ -1,6 +1,10 @@
 from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import boto3
+
+# Initialize boto3 client for S3
+s3_client = boto3.client('s3')
 
 app = Flask(__name__)
 
@@ -9,6 +13,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+bucket_name = 'haimon-bucket'
+img_path = 'haim_img.jpeg'
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,13 +45,27 @@ def enter_info():
     else:
         return render_template('index.html', message="Please enter both name and email.")
 
+def get_img_url(bucket_name, object_key):
+    try:
+        s3_client.head_object(Bucket=bucket_name, Key=object_key)
+        url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': bucket_name, 'Key': object_key},
+            ExpiresIn=3600
+        )
+        return url
+    except s3_client.exceptions.ClientError as e:
+        print(e)
+        return None
+
 @app.route('/welcome')
 def welcome():
     user = User.query.order_by(User.id.desc()).first()
-    if user:
-        return render_template('welcome.html', name=user.name)
+    img_url = get_img_url(bucket_name, img_path)
+    if img_url is not None:
+        return render_template('welcome.html', name=user.name, has_access=True, img_url=img_url)
     else:
-        return redirect('/')
+        return render_template('welcome.html', name=user.name, has_access=False)
 
 @app.route('/db')
 def show_db():
