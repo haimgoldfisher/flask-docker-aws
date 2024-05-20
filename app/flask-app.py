@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import boto3
+from botocore.exceptions import NoCredentialsError
 
 # Initialize boto3 client for S3
 s3_client = boto3.client('s3')
@@ -17,14 +18,17 @@ migrate = Migrate(app, db)
 bucket_name = 'haimon-bucket'
 img_path = 'haim_img.jpeg'
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/enter_info', methods=['POST'])
 def enter_info():
@@ -32,18 +36,17 @@ def enter_info():
     email = request.form.get('email')
 
     if name and email:
-        # Check if user already exists
         user = User.query.filter_by(name=name, email=email).first()
         if user:
             return redirect('/welcome')
         else:
-            # Save new user to the database
             new_user = User(name=name, email=email)
             db.session.add(new_user)
             db.session.commit()
             return redirect('/welcome')
     else:
         return render_template('index.html', message="Please enter both name and email.")
+
 
 def get_img_url(bucket_name, object_key):
     try:
@@ -54,9 +57,13 @@ def get_img_url(bucket_name, object_key):
             ExpiresIn=3600
         )
         return url
-    except s3_client.exceptions.ClientError as e:
-        print(e)
+    except NoCredentialsError as e:
+        print("No AWS credentials found:", e)
         return None
+    except Exception as e:
+        print("An error occurred:", e)
+        return None
+
 
 @app.route('/welcome')
 def welcome():
@@ -67,10 +74,12 @@ def welcome():
     else:
         return render_template('welcome.html', name=user.name, has_access=False)
 
+
 @app.route('/db')
 def show_db():
     users = User.query.all()
     return render_template('db.html', users=users)
+
 
 if __name__ == '__main__':
     with app.app_context():
