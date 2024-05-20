@@ -68,7 +68,7 @@ By following these steps, Amazon S3 integration was successfully implemented, al
 
 ## Project Architecture
 
-This project follows a client-server architecture using Flask as the web framework, HTML for front-end rendering, and PostgreSQL for database management. The project directory structure is as follows:
+This project follows a client-server architecture using Flask as the web framework, HTML for front-end rendering, and SQLite for database management. The project directory structure is as follows:
  
 ```
 flask-docker-aws/
@@ -87,7 +87,7 @@ flask-docker-aws/
 └── docker-compose.yml      # Docker Compose file for defining services
 ```
 
-The Flask application (`flask-app.py`) handles routing and interactions with the database. HTML templates (`templates/`) are used for rendering front-end views. PostgreSQL is used to store user information in the database.
+The Flask application (`flask-app.py`) handles routing and interactions with the database. HTML templates (`templates/`) are used for rendering front-end views. SQLite is used to store user information in the database.
 
 ## Author
 
