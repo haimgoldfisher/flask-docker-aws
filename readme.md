@@ -1,4 +1,4 @@
-# Flask-SQLite-App
+# Flask-SQLite-App with AWS
 
 ## Description
 
@@ -38,33 +38,36 @@ Ensure you have the following installed on your system:
 
 ![db](snaps/db.png)
 
-## Amazon S3 Integration
+### AWS Integration
 
-To integrate Amazon S3 into the project, the following steps were taken:
+This Flask application assumes that it is running on an EC2 instance within an AWS environment. The application utilizes an Amazon S3 bucket to store images, which are accessed by the Flask app to display content to users. However, the images stored in the S3 bucket are kept private, and access to them is restricted.
 
-1. **Created S3 Bucket with Public Read Access:**
-   - A new S3 bucket was created using the AWS Management Console.
-   - Public read access was granted to the bucket to allow access to the uploaded image.
+To ensure that the Flask application can access the images stored in the S3 bucket, the EC2 instance hosting the application is assigned an IAM role with appropriate permissions. In this case, the role should have the `AmazonS3ReadOnlyAccess` policy attached, allowing the instance to read objects from the specified S3 bucket.
 
-2. **Uploaded Image to S3 Bucket:**
-   - An image was uploaded to the newly created S3 bucket.
-
-3. **Made the Image Public:**
-   - The uploaded image in the S3 bucket was made public to allow access from external sources.
-
-4. **Updated Image URL in welcome.html:**
-   - The URL of the image in the `welcome.html` file was updated to point to the public URL of the image hosted on S3.
+When the Flask application runs on an EC2 instance with the necessary IAM role, it can successfully retrieve and display the images from the S3 bucket. However, if the instance does not have the required permissions or if the IAM role is not properly configured, the application will encounter errors when attempting to access the S3 bucket.
 
 ### Screenshots
 
 1. **AWS Console with S3 Bucket:**
-   - ![AWS Console S3 Bucket](snaps/s3_bucket_pic_url.png)
+   ![AWS Console S3 Bucket](snaps/s3_bucket_pic_url.png)
 
 2. **Updated Code with S3 Image URL:**
-   - ![Updated Code with S3 Image URL](snaps/html_welcome_s3_bucket_docker.png)
+   ![Updated Code with S3 Image URL](snaps/show_img_s3.png)
 
-By following these steps, Amazon S3 integration was successfully implemented, allowing the project to utilize an image hosted on S3.
+3. **Deploy The App on EC2:**
+   ![Deployment](snaps/ec2-running.png)
 
+4. **Updated Code to Get S3 Img URL if Permitted:**
+   ![Code](snaps/private_access_code.png)
+
+5. **EC2 with S3 Reader IAM Role:**
+   ![S3 Reader](snaps/s3_reader_ec2_access.png)
+   ![IAM Role](snaps/ec2_has_access.png)
+
+6. **Welcome HTML When EC2 Has no IAM Role:**
+   ![HTML No Credentials](snaps/no_access.png)
+
+   
 
 ## Project Architecture
 
