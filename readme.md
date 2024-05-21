@@ -12,7 +12,7 @@ Ensure you have the following installed on your system:
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-### 1. Install Requirements
+### Install Requirements
 - Install the required Python packages using pip (if running locally):
   ```sh
   pip install -r requirements.txt 
