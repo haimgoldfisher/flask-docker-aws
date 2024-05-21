@@ -38,6 +38,16 @@ Ensure you have the following installed on your system:
 
 ![db](snaps/db.png)
 
+## Dockerize
+To simplify deployment and ensure consistency across different environments, this application has been containerized using Docker. **Dockerfile** and **docker-compose.yml** were created in the root directory of the project. To build and run the Docker container, use the following command:
+
+```sh
+docker-compose up --build
+  ```
+
+The application will be accessible at '**http://127.0.0.1:8000/**'.
+
+
 ## AWS Integration
 
 This Flask application assumes that it is running on an EC2 instance within an AWS environment. The application utilizes an Amazon S3 bucket to store images, which are accessed by the Flask app to display content to users. However, the images stored in the S3 bucket are kept private, and access to them is restricted.
