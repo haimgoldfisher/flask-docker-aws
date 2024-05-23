@@ -12,7 +12,7 @@ Ensure you have the following installed on your system:
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-### 1. Install Requirements
+### Install Requirements
 - Install the required Python packages using pip (if running locally):
   ```sh
   pip install -r requirements.txt 
@@ -37,6 +37,16 @@ Ensure you have the following installed on your system:
 - This will display a table with the names and emails stored in the database.
 
 ![db](snaps/db.png)
+
+## Dockerize
+To simplify deployment and ensure consistency across different environments, this application has been containerized using Docker. **Dockerfile** and **docker-compose.yml** were created in the root directory of the project. To build and run the Docker container, use the following command:
+
+```sh
+docker-compose up --build
+  ```
+
+The application will be accessible at '**http://127.0.0.1:8000/**'.
+
 
 ## AWS Integration
 
