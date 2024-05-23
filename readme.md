@@ -56,9 +56,9 @@ To ensure that the Flask application can access the images stored in the S3 buck
 
 When the Flask application runs on an EC2 instance with the necessary IAM role, it can successfully retrieve and display the images from the S3 bucket. However, if the instance does not have the required permissions or if the IAM role is not properly configured, the application will encounter errors when attempting to access the S3 bucket.
 
-### Auto Scaling Group & Network Load Balancer
+### Auto Scaling Group & Load Balancer
 
-To ensure high availability and scalability of the Flask application, an Auto Scaling Group (ASG) and a Network Load Balancer (NLB) were set up:
+To ensure high availability and scalability of the Flask application, an Auto Scaling Group (ASG) and a Load Balancer were set up:
 
 1. **Launch Template Creation:**
    - Created a launch template based on `t2.micro` instance with Ubuntu.
@@ -125,14 +125,14 @@ To ensure high availability and scalability of the Flask application, an Auto Sc
    The user data script in the launch template, used to configure the EC2 instance upon startup:
    ![HTML No Credentials](snaps/user_data.png)
 
-8. **Created a Network Load Balancer:**
+8. **Created a Load Balancer:**
 
-   The Network Load Balancer instance which distributes traffic across multiple EC2 instances:
+   The Load Balancer instance which distributes traffic across multiple EC2 instances:
    ![NLB](snaps/load_balancer.png)
 
 9. **Entered The App Using Auto Scaling Group with Load Balancer DNS:**
    
-   The application accessed via the DNS address of the Network Load Balancer, showcasing the Auto Scaling Group's functionality:
+   The application accessed via the DNS address of the Load Balancer, showcasing the Auto Scaling Group's functionality:
    ![DNS](snaps/app_access_dns.png)
 
 10. **Stressed the CPU of EC2 in Order to Trigger Auto Scaling:**
