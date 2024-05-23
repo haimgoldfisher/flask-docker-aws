@@ -80,37 +80,59 @@ To ensure high availability and scalability of the Flask application, an Auto Sc
 ### Screenshots
 
 1. **AWS Console with S3 Bucket:**
+   
+   The S3 bucket for the application, showing the stored image:
    ![AWS Console S3 Bucket](snaps/s3_bucket_pic_url.png)
 
 2. **Updated Code with S3 Image URL:**
+
+   The updated code snippet showing how the application accesses images from the S3 bucket:
    ![Updated Code with S3 Image URL](snaps/show_img_s3.png)
 
 3. **App Deployment with EC2:**
+   
+   The EC2 instance running the Flask application, displaying successful deployment:
    ![Deployment](snaps/ec2-running.png)
 
 4. **Updated Code to Get S3 Image URL If Permitted:**
+   
+   The code logic implemented to retrieve the S3 image URL, handling permissions:
    ![Code](snaps/private_access_code.png)
 
 5. **EC2 with S3 Reader IAM Role:**
+
+   The EC2 instance with the IAM role that grants read access to the S3 bucket:
    ![S3 Reader](snaps/s3_reader_ec2_access.png)
    ![IAM Role](snaps/ec2_has_access.png)
 
 6. **Welcome HTML When EC2 Has No IAM Role:**
+
+   The welcome page shown when the EC2 instance lacks the necessary IAM role, preventing access to the S3 bucket:
    ![HTML No Credentials](snaps/no_access.png)
 
 7. **Launch Template's Bash Script:**
+   
+   The user data script in the launch template, used to configure the EC2 instance upon startup:
    ![HTML No Credentials](snaps/user_data.png)
 
 8. **Created a Network Load Balancer:**
+
+   The Network Load Balancer instance which distributes traffic across multiple EC2 instances:
    ![NLB](snaps/load_balancer.png)
 
 9. **Entered The App Using Auto Scaling Group with Load Balancer DNS:**
+   
+   The application accessed via the DNS address of the Network Load Balancer, showcasing the Auto Scaling Group's functionality:
    ![DNS](snaps/app_access_dns.png)
 
 10. **Stressed the CPU of EC2 in Order to Trigger Auto Scaling:**
+   
+   The EC2 instance under CPU stress, used to trigger the Auto Scaling Group to launch additional instances:
    ![Stress](snaps/stress.png)
 
 11. **Auto Scaling Group Reaction to CPU Stress:**
+   
+   The Auto Scaling Group's response to the increased CPU load, automatically launching a new instance:
    ![Autoscaling](snaps/auto_scaling_works.png)
 
    
